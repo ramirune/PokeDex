@@ -8,7 +8,7 @@ let pokemonList = [
 for (let i=0; i<pokemonList.length; i++){
   document.write(pokemonList[i].name+ "(Height:"+pokemonList[i].height+")");
   if (pokemonList[i].height>1){
-    document.write("-Wow,that\'s BIG!");
+    document.write("-Wow,that\'s BIG!"); //add code to highlight big pokemon in the list
   }
-  document.write("<br>");
+  document.write("<br>"); //new line
 }
