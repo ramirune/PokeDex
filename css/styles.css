@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Mitr', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.6;
@@ -23,4 +23,33 @@ h2 {
 h3 {
   font-size: 18px;
   font-weight: 700;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.button1 {
+  width: 150px;
+  border: none;
+  display: inline-block;
+  /* takes the font from the outer container */
+  font-family: inherit;
+  /* style button */
+  background-color: #5b6d5b;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 6px;
+  padding: 10px;
+  border-radius: 5px;
+  /* width of the border, type, color */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  transition: 0.2s opacity;
+}
+.button1:hover,
+.button1:focus {
+  /* lets the mouse appear as a hand when hovering over the button */
+  cursor: pointer;
+  /* reduces the opacity of the button to 80% */
+  background-color: #00adb5;
 }
