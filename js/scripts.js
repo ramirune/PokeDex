@@ -1,18 +1,19 @@
 let pokemonRepository = (function () {
   //create pokemon list
-  let pokemonList = [
-    {name: "Kakuna", height: 0.6, type: ["bug", "poison"]},
-    {name: "Gloom", height: 0.8, type: ["grass", "poison"]},
-    {name: "Golem", height: 1.4, type: ["rock","ground"]}
-  ];
+  // let pokemonList = [
+  //   {name: "Kakuna", height: 0.6, type: ["bug", "poison"]},
+  //   {name: "Gloom", height: 0.8, type: ["grass", "poison"]},
+  //   {name: "Golem", height: 1.4, type: ["rock","ground"]}
+  // ];
+
+  let pokemonList = []; //create an empty array for pokemonList
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/"; //url to fetch the data
 
   //Add item function to the pokemonList array
   function add(pokemon) {
     if(
       typeof pokemon === "object" &&
-      "name" in pokemon &&
-      "height" in pokemon &&
-      "type" in pokemon
+      "name" in pokemon
     ){
       pokemonList.push(pokemon);
     }else{
@@ -42,7 +43,41 @@ let pokemonRepository = (function () {
 
   //create function to show clicked pokemon's details
   function showDetails(pokemon) {
+  loadDetails(pokemon).then(function () {
     console.log(pokemon);
+  });
+}
+
+// create load function to fetch data fron API
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+//create load detals function
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      // Now we add the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
   }
 
   //return values
@@ -50,16 +85,20 @@ let pokemonRepository = (function () {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    showDetails: showDetails
+    showDetails: showDetails,
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 })();
 
-//add a pokemon on the list
-console.log(pokemonRepository.getAll());
-pokemonRepository.add({name:"Seal", height:1.1, type:["water"]});
-console.log(pokemonRepository.getAll());
+//try adding a pokemon on the list
+// console.log(pokemonRepository.getAll());
+// pokemonRepository.add({name:"Seal", height:1.1, type:["water"]});
+// console.log(pokemonRepository.getAll());
 
 // create forEach function to printout the list
-pokemonRepository.getAll().forEach(function(pokemon){
-  pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function(){
+  pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+  });
 });
