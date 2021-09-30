@@ -7,7 +7,7 @@ let pokemonRepository = (function () {
   // ];
 
   let pokemonList = []; //create an empty array for pokemonList
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/"; //url to fetch the data
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150"; //url to fetch the data
 
   //Add item function to the pokemonList array
   function add(pokemon) {
