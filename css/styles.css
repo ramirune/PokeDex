@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: mistyrose;
+  background-color: white;
 }
 
 h1 {
@@ -36,10 +36,11 @@ ul {
   /* takes the font from the outer container */
   font-family: inherit;
   /* style button */
-  background-color: #5b6d5b;
+  background-color: #00bfb4;
   color: white;
+  text-shadow: 0 1px 3px #000000;
   text-decoration: none;
-  margin-bottom: 6px;
+  margin: 6px;
   padding: 10px;
   border-radius: 5px;
   /* width of the border, type, color */
@@ -51,5 +52,17 @@ ul {
   /* lets the mouse appear as a hand when hovering over the button */
   cursor: pointer;
   /* reduces the opacity of the button to 80% */
-  background-color: #00adb5;
+  background-color: #fe547b;
+}
+
+.page-header {
+  margin: 0;
+  text-align: center;
+  background-color: #f1e189;
+}
+
+.pokemon-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
