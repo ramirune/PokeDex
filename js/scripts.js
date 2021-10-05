@@ -55,18 +55,19 @@ let pokemonRepository = (function () {
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
+    //create close button for the modal
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'Close';
     closeButtonElement.addEventListener('click', hideModal);
 
-    let titleElement = document.createElement('h1');
+    let titleElement = document.createElement('h1'); //Title for the pop-up pokemon window
     titleElement.innerText = pokemon.name;
 
     let heightElement = document.createElement('p');
     heightElement.innerText = 'Height:' + pokemon.height;
 
-    // created an array to store the type objects.
+    // created an array to store the pokemon type objects.
     let pokemonTypes = [];
     Object.keys(pokemon.types).forEach((key) => {
       pokemonTypes.push(pokemon.types[key].type.name);
@@ -89,15 +90,19 @@ let pokemonRepository = (function () {
     modalContainer.classList.add('is-visible');
   }
 
+//function for hiding the madal
   function hideModal() {
     modalContainer.classList.remove('is-visible');
   }
 
+//hide the modal when press Escape key
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
     }
   });
+
+  //hide the modal when click outside the modal container
   modalContainer.addEventListener('click', (e) => {
     // Since this is also triggered when clicking INSIDE the modal
     // We only want to close if the user clicks directly on the overlay
