@@ -26,18 +26,23 @@ let pokemonRepository = (function () {
   }
 
   function addListItem(pokemon){
-    let pokeList = document.querySelector(".pokemon-list"); //select pokemon-list class from html
+    let pokemonList = document.querySelector(".pokemon-list"); //select pokemon-list  from html
     let listItem = document.createElement("li"); // create list items
+    listItem.classList.add("group-list-item");
 
     let button = document.createElement("button"); // create button
     button.innerText = pokemon.name; //add pokemon name from the pokemonList to each button
-    button.classList.add("button1"); //add button styles
+    button.classList.add("btn", "btn-primary"); //add button styles
+
+    button.setAttribute("data-target", "#pokeModal");
+    button.setAttribute("data-toggle", "modal");
+
     button.addEventListener('click', function(){ //add event to button
       showDetails(pokemon);
     });
 
     listItem.appendChild(button);
-    pokeList.appendChild(listItem);
+    pokemonList.appendChild(listItem);
   }
 
   //create function to show clicked pokemon's details
@@ -51,17 +56,13 @@ let pokemonRepository = (function () {
   let modalContainer = document.querySelector('#modal-container');
 
   function showModal(pokemon) {
-    modalContainer.innerHTML = '';
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
+    let modalTitle = $('.modal-title');
+    let modalBody = $('.modal-body');
 
-    //create close button for the modal
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
-    closeButtonElement.addEventListener('click', hideModal);
+    modalTitle.empty();
+    modalBody.empty();
 
-    let titleElement = document.createElement('h1'); //Title for the pop-up pokemon window
+    let titleElement = $('.modal-title');
     titleElement.innerText = pokemon.name;
 
     let heightElement = document.createElement('p');
@@ -80,14 +81,12 @@ let pokemonRepository = (function () {
     imageElement.classList.add('pokeImage');
     imageElement.src = pokemon.imageUrl;
 
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(heightElement);
-    modal.appendChild(typesElement);
-    modal.appendChild(imageElement);
-    modalContainer.appendChild(modal);
+    modalTitle.append(titleElement);
+    modalBody.append(heightElement);
+    modalBody.append(typesElement);
+    modalBody.append(imageElement);
 
-    modalContainer.classList.add('is-visible');
+    // modalContainer.classList.add('is-visible');
   }
 
 //function for hiding the madal
