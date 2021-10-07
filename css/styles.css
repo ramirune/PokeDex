@@ -28,47 +28,15 @@ h3 {
 ul {
   list-style-type: none;
 }
-/*
-.button1 {
-  width: 150px;
-  border: none;
-  display: inline-block;
 
-  font-family: inherit;
-
-  background-color: #00bfb4;
-  color: white;
-  text-shadow: 0 1px 3px #000000;
-  text-decoration: none;
-  margin: 6px;
-  padding: 10px;
-  border-radius: 5px;
-
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  transition: 0.2s opacity;
-} */
-
-/* button:hover,
-button:focus {
-  cursor: pointer;
+.navbar {
+  margin-bottom: 30px;
 }
 
-.button1:hover,
-.button1:focus {
-
-  cursor: pointer;
-
-  background-color: #fe547b;
+.group-list-item {
+  margin: 2px;
 }
 
-.page-header {
-  margin: 0;
-  text-align: center;
-  background-color: #f1e189;
+.modal-header {
+  background-color: #b8de6f;
 }
-
-.pokemon-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-} */
