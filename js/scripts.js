@@ -1,40 +1,42 @@
 let pokemonRepository = (function () {
-  //create pokemon list
-  // let pokemonList = [
-  //   {name: "Kakuna", height: 0.6, type: ["bug", "poison"]},
-  //   {name: "Gloom", height: 0.8, type: ["grass", "poison"]},
-  //   {name: "Golem", height: 1.4, type: ["rock","ground"]}
-  // ];
-
   let pokemonList = []; //create an empty array for pokemonList
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150"; //url to fetch the data from API
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //url to fetch the data from API
+  let filter = document.querySelector('#filter');
+
+  //Filter Pokemon event
+  filter.addEventListener('input', function () {
+    let pokemons = document.querySelectorAll('.group-list-item');
+    let value = filter.value.toLowerCase();
+
+    pokemons.forEach(function (pokemon) {
+      if (pokemon.innerText.toLowerCase().indexOf(value) > -1) {
+        pokemon.style.display = '';
+      } else {
+        pokemon.style.display = 'none';
+      }
+    });
+  });
 
   //Add item function to the pokemonList array
   function add(pokemon) {
-    if(
-      typeof pokemon === "object" &&
-      "name" in pokemon
-    ){
       pokemonList.push(pokemon);
-    }else{
-      console.log("pokemon is not correct");
-    }
   }
+
   //return item function
   function getAll() {
     return pokemonList;
   }
 
   function addListItem(pokemon){
-    let pokemonList = document.querySelector(".pokemon-list"); //select pokemon-list  from html
-    let listItem = document.createElement("li"); // create list items
-    listItem.classList.add("group-list-item", "col-xl-2", "col-lg-4", "col-md-6");
+    let pokemonList = document.querySelector('.pokemon-list'); //select pokemon-list  from html
+    let listItem = document.createElement('li'); // create list items
+    listItem.classList.add('group-list-item', 'col-xl-2', 'col-lg-4', 'col-md-6');
 
-    let button = document.createElement("button"); // create button
+    let button = document.createElement('button'); // create button
     button.innerText = pokemon.name; //add pokemon name from the pokemonList to each button
-    button.classList.add("btn", "btn-info", "btn-block"); //add button styles
-    button.setAttribute("data-target", "#pokemonModal");
-    button.setAttribute("data-toggle", "modal");
+    button.classList.add('btn', 'btn-info', 'btn-block'); //add button styles
+    button.setAttribute('data-target', '#pokemonModal');
+    button.setAttribute('data-target', 'modal');
 
     button.addEventListener('click', function(){ //add event to button
       showDetails(pokemon);
@@ -87,12 +89,12 @@ let pokemonRepository = (function () {
     // modalContainer.classList.add('is-visible');
   }
 
-//function for hiding the madal
+  //function for hiding the madal
   function hideModal() {
     modalContainer.classList.remove('is-visible');
   }
 
-//hide the modal when press Escape key
+  //hide the modal when press Escape key
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
@@ -152,11 +154,6 @@ let pokemonRepository = (function () {
     showModal: showModal
   };
 })();
-
-//try adding a pokemon on the list
-// console.log(pokemonRepository.getAll());
-// pokemonRepository.add({name:"Seal", height:1.1, type:["water"]});
-// console.log(pokemonRepository.getAll());
 
 // create forEach function to printout the list
 pokemonRepository.loadList().then(function(){
