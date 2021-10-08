@@ -33,6 +33,14 @@ ul {
   margin-bottom: 30px;
 }
 
+.btn {
+  height: 50px;
+}
+
+.pokeImage {
+  width: 150px;
+}
+
 .group-list-item {
   margin: 2px;
 }
