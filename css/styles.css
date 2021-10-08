@@ -1,4 +1,7 @@
 * {
+  padding: 0;
+  margin: 0;
+
   box-sizing: border-box;
   font-family: 'Mitr', sans-serif;
   font-weight: 400;
@@ -47,4 +50,11 @@ ul {
 
 .modal-header {
   background-color: #b8de6f;
+}
+
+.float{
+	position: fixed;
+	bottom:40px;
+	right:40px;
+  
 }
